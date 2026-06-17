@@ -198,9 +198,5 @@ Run the sections top to bottom:
 5. **Transfer learning** → `keystroke_transfer_model.keras`.
 6. **Test on unseen data** — `diplomski123@` demo.
 
-Before running, point the clone URL in Section 0 at your own copy of the dataset repo,
-and upload the 125-samples-per-key base dataset as `cropped_base/` (it is exposed at
-`input-sounds/cropped_base/` after cloning).
-
 All code, trained models, the hyperparameter grid-search CSV, and the random seed are
 included to support fully reproducible research.
