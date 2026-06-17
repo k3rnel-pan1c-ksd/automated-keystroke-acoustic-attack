@@ -76,6 +76,23 @@ and is aligned with the detected click events in the audio, producing large labe
 keystroke datasets with minimal manual effort. This removes the manual-annotation
 bottleneck that has limited the scalability and reproducibility of previous ASCAs.
 
+### Practical demo — automatic labelling in the browser
+
+🔗 **Try it live: [auto-key-practical.vercel.app](https://auto-key-practical.vercel.app/)**
+
+Conventionally, building a keystroke-acoustic dataset means **manually pairing every
+keystroke sound with the key that produced it** — listening to a recording and
+hand-labelling each click, one by one. This is slow, error-prone, and the main reason
+previous attacks could not scale.
+
+We replace that manual step with an **automatic labelling process**: the tool detects
+each click in the audio, recovers the typed characters from the video via OCR, and
+aligns the two streams so that every isolated keystroke sound is automatically tagged
+with its ground-truth key — no manual annotation required. The web demo lets you run
+this end-to-end and watch the keystrokes get detected, segmented and labelled
+automatically, illustrating the data-collection pipeline that feeds the CNN training in
+this repository.
+
 ### Feature extraction
 
 Each cropped keystroke is converted to a **log-mel spectrogram**. MFCCs were rejected
@@ -197,6 +214,10 @@ Run the sections top to bottom:
 4. **Base model** — 5-fold CV, top-k accuracy, entropy reduction → `keystroke_cnn_model.keras`.
 5. **Transfer learning** → `keystroke_transfer_model.keras`.
 6. **Test on unseen data** — `diplomski123@` demo.
+
+Before running, point the clone URL in Section 0 at your own copy of the dataset repo,
+and upload the 125-samples-per-key base dataset as `cropped_base/` (it is exposed at
+`input-sounds/cropped_base/` after cloning).
 
 All code, trained models, the hyperparameter grid-search CSV, and the random seed are
 included to support fully reproducible research.
